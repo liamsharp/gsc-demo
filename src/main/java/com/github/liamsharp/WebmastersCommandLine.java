@@ -7,8 +7,7 @@ import com.google.api.client.http.HttpTransport;
 import com.google.api.client.http.javanet.NetHttpTransport;
 import com.google.api.client.json.JsonFactory;
 import com.google.api.client.json.jackson2.JacksonFactory;
-
-import com.google.api.services.searchconsole.v1.Webmasters;
+import com.google.api.services.searchconsole.v1.SearchConsole;
 import com.google.api.services.searchconsole.v1.model.SitesListResponse;
 import com.google.api.services.searchconsole.v1.model.WmxSite;
 
@@ -49,12 +48,12 @@ public class WebmastersCommandLine {
     GoogleCredential credential = new GoogleCredential().setFromTokenResponse(response);
 
     // Create a new authorized API client
-    Webmasters service = new Webmasters.Builder(httpTransport, jsonFactory, credential)
+    SearchConsole service = new SearchConsole.Builder(httpTransport, jsonFactory, credential)
         .setApplicationName("WebmastersCommandLine")
         .build();
 
     List<String> verifiedSites = new ArrayList<String>();
-    Webmasters.Sites.List request = service.sites().list();
+    SearchConsole.Sites.List request = service.sites().list();
 
     // Get all sites that are verified
     try {
